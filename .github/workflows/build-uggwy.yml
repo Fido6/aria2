@@ -100,11 +100,13 @@ jobs:
     - name: Build aria2
       run: |
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
-        tar -czvf ../ARIA2-uggwy.tar.gz .
-        cp ../ARIA2-uggwy.tar.gz ./
+        tar -czvf ../ARIA2-uggwy.tar.gz ./src/aria2c
+        cp ./src/aria2c ../aria2c-uggwy
+        rm -rf ./*
+        cp  ../aria2c-uggwy ./
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: ARIA2-uggwy.tar.gz
+        name: aria2c-uggwy
         path: ./

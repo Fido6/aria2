@@ -99,13 +99,15 @@ jobs:
           --disable-nls
     - name: Build aria2
       run: |
+        print $PWD
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
-        tar -czvf ../ARIA2-ucowy.tar.gz .
-        cp ../ARIA2-ucowy.tar.gz ./
-        tar -czvf apt.tar.gz /etc/apt/
+        tar -czvf ../ARIA2-ucowy.tar.gz ./src/aria2c
+        cp ./src/aria2c ../aria2c-ucowy
+        rm -rf ./*
+        cp  ../aria2c-ucowy ./
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: ARIA2-ucowy.tar.gz,apt.tar.gz
+        name: aria2c-ucowy
         path: ./

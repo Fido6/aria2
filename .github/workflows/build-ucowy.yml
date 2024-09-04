@@ -99,7 +99,6 @@ jobs:
           --disable-nls
     - name: Build aria2
       run: |
-        print $PWD
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
         tar -czvf ../ARIA2-ucowy.tar.gz ./src/aria2c
         cp ./src/aria2c ../aria2c-ucowy

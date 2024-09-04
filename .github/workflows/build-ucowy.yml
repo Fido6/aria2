@@ -11,7 +11,7 @@ jobs:
         crypto: [openssl]
         bittorrent: [with-bt]
         exclude:
-        - os: macos-11
+        - os: macos-14
           crypto: gnutls
         - crypto: openssl
           bittorrent: without-bt
